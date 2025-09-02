@@ -5,30 +5,6 @@ const fs = require('node:fs');
 const shameEmbed = new EmbedBuilder().setColor(0xB03119);
 const fameEmbed = new EmbedBuilder().setColor(0xF5BB27);
 
-
-/*function archiveToJSON(name,msgID,chnlID,gildID) {
-    var messageArchive = fs.readFileSync('messagearchive.json', err => {
-        if (err) {
-            console.log(err.message)
-        }
-    })
-    messageArchive = JSON.parse(messageArchive)
-
-    var messageObject = {
-        reaction: {
-            name: name,
-            messageId: msgID,
-            channelId: chnlID,
-            guildId: gildID
-        }
-    }
-
-    messageArchive.push(messageObject)
-
-    fs.writeFileSync('messagearchive.json', JSON.stringify(messageArchive, null, 2))
-    console.log(messageArchive)
-}*/
-
 module.exports = {
     name: Events.MessageReactionAdd,
     async execute(reaction, user, message, member) {
@@ -83,7 +59,7 @@ module.exports = {
                             console.log(err.message)
                         }
                     });
-                    
+
                     messageArchive = JSON.parse(messageArchive) || {};
 
                     messageArchive[reactionID] = {
