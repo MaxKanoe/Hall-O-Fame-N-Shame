@@ -1,0 +1,19 @@
+{
+  "name": "hall-of-famenshame",
+  "version": "1.0.0",
+  "description": "Starboard discord bot designed for FLC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maximillian Kanoe",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.22.1",
+    "git": "^0.1.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "eslint": "^9.34.0"
+  }
+}
