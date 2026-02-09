@@ -4,6 +4,7 @@ const fs = require('node:fs');
 module.exports = {
     name: Events.MessageReactionRemove,
     execute(reaction, user) {
+        if (user.bot) return;
 
         let messageArchive = fs.readFileSync('messagearchive.json', err => {
             if (err) {
@@ -21,7 +22,7 @@ module.exports = {
         var reactedGuildId = reaction.message.guildId
 
         function hofnsRemove() {
-            console.log(`Removed from Reaction: ${user}, ${messageContent}`);
+            console.log(`Removed from Reaction by ${user}: ${messageContent}`);
 
             var ArchiveObject = messageArchive[reactedMessageId]
 
@@ -31,15 +32,19 @@ module.exports = {
 
             var archiveChannel = reaction.client.channels.cache.get(archiveChannelId)
 
-            archiveChannel.messages.fetch(archiveMessageID).then(msg => {
-                msg.delete();
-            });
+            if (reaction.count <= 0 ) {
+                archiveChannel.messages.fetch(archiveMessageID).then(msg => {
+                    msg.delete();
+                });
 
-            delete messageArchive[reactedMessageId];
+                delete messageArchive[reactedMessageId];
+            }
 
             fs.writeFileSync('messagearchive.json', JSON.stringify(messageArchive, null, 2));
         }
 
-        hofnsRemove()
+        if (reaction.emoji.name == '💢' || reaction.emoji.name == '⭐') {
+            hofnsRemove()
+        }
     },
 };

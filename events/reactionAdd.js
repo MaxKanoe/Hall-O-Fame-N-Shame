@@ -19,20 +19,21 @@ module.exports = {
         var messageContent = reaction.message.content
         var messageChannel = reaction.client.channels.cache.get(reaction.message.channelId)
         var messageAttachment = reaction.message.attachments
+        var messageTimestamp = reaction.message.createdTimestamp
 
         var reactionID = reaction.message.id
         var reactionChannel = reaction.message.channelId
         var reactionGuild = reaction.message.guildId
 
         function hofnsEmbed(embedType, channelType, channelName) {
-            console.log(`Added to ${channelName}: ${user}, ${messageContent}`);
+            console.log(`Added to ${channelName} by ${user}: ${messageContent}`);
 
             embedType.setAuthor({ name: `@${reaction.message.member.displayName}`, iconURL: `${reaction.message.member.displayAvatarURL()}` })
 
             if (messageContent) {
-                embedType.setDescription(messageContent)
+                embedType.addFields({name: `1`, value: messageContent})
             } else {
-                embedType.setDescription(' ')
+                embedType.addFields({name: `1`, value: ` `})
             }
             if (messageAttachment.size > 0) {
                 var firstAttachment = messageAttachment.first();
