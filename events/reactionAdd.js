@@ -10,8 +10,8 @@ module.exports = {
     async execute(reaction, user, message, member) {
         if (user.bot) return;
 
-        const fameHall = reaction.client.channels.cache.get('1410059784119652445');
-        const shameHall = reaction.client.channels.cache.get('1410059812447846570');
+        const fameHall = reaction.message.client.channels.cache.get('1397038038844047431');
+        const shameHall = reaction.message.client.channels.cache.get('1396265940299153509');
 
         const httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
 
@@ -29,11 +29,12 @@ module.exports = {
             console.log(`Added to ${channelName} by ${user}: ${messageContent}`);
 
             embedType.setAuthor({ name: `@${reaction.message.member.displayName}`, iconURL: `${reaction.message.member.displayAvatarURL()}` })
+            var messageFormattedDate = time(Math.floor(messageTimestamp / 1000), 'f');
 
             if (messageContent) {
-                embedType.addFields({name: `1`, value: messageContent})
+                embedType.addFields({name: messageFormattedDate, value: messageContent})
             } else {
-                embedType.addFields({name: `1`, value: ` `})
+                embedType.addFields({name: messageFormattedDate, value: ` `})
             }
             if (messageAttachment.size > 0) {
                 var firstAttachment = messageAttachment.first();
@@ -83,6 +84,9 @@ module.exports = {
                         sentReply.delete()
                     })
                 });
+
+                var shameEmbed = new EmbedBuilder().setColor(0xB03119);
+                var fameEmbed = new EmbedBuilder().setColor(0xF5BB27);
             }
         };
             if (reaction.emoji.name == '💢') {

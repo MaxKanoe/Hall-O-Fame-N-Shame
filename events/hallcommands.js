@@ -15,12 +15,12 @@ module.exports = {
 
 		const args = message.content.trim().split(/ +/g);
 		const cmd = args[0].slice(prefix.length).toLowerCase();
-		const msgMaximum = 5
+		const msgMaximum = 3
 
 		const httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
 
-		const fameHall = message.client.channels.cache.get('1410059784119652445');
-		const shameHall = message.client.channels.cache.get('1410059812447846570');
+		const fameHall = message.client.channels.cache.get('1397038038844047431');
+		const shameHall = message.client.channels.cache.get('1396265940299153509');
 
 
 
